@@ -1,0 +1,10 @@
+# Archivos de IntelliJ IDEA
+.idea/
+*.iml
+
+# Archivos compilados
+target/
+*.class
+
+# Credenciales de PostgreSQL
+db.properties
