@@ -1,0 +1,263 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.papeleriacampus.controller.ProductoController"
+      alignment="TOP_LEFT"
+      spacing="12"
+      prefWidth="1000"
+      prefHeight="650"
+      style="-fx-background-color: #F5F6FA;">
+
+    <padding>
+        <Insets top="18" right="20" bottom="18" left="20"/>
+    </padding>
+
+    <!-- Título del formulario -->
+
+    <Label text="Papelería Campus - Gestión de Productos"
+           style="-fx-font-size: 22px;
+                  -fx-font-weight: bold;
+                  -fx-text-fill: #26354F;"/>
+
+    <!-- Búsqueda y filtros -->
+
+    <VBox spacing="10"
+          style="-fx-background-color: white;
+                 -fx-background-radius: 8;
+                 -fx-padding: 14;">
+
+        <Label text="Búsqueda y filtros"
+               style="-fx-font-size: 15px;
+                      -fx-font-weight: bold;"/>
+
+        <HBox spacing="12" alignment="CENTER_LEFT">
+
+            <Label text="Buscar:"/>
+
+            <TextField fx:id="txtBuscar"
+                       promptText="Código o nombre"
+                       prefWidth="230"/>
+
+            <Label text="Categoría:"/>
+
+            <ComboBox fx:id="cmbFiltroCategoria"
+                      prefWidth="165">
+
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Todas"/>
+                        <String fx:value="Papelería"/>
+                        <String fx:value="Tecnología"/>
+                        <String fx:value="Accesorios"/>
+                    </FXCollections>
+                </items>
+
+                <value>
+                    <String fx:value="Todas"/>
+                </value>
+
+            </ComboBox>
+
+            <CheckBox fx:id="chkConExistencias"
+                      text="Solo con existencias"/>
+
+        </HBox>
+
+        <HBox spacing="10" alignment="CENTER_LEFT">
+
+            <Button fx:id="btnBuscar"
+                    text="Buscar"
+                    onAction="#buscarProductos"
+                    prefWidth="110"/>
+
+            <Button fx:id="btnLimpiarFiltros"
+                    text="Limpiar filtros"
+                    onAction="#limpiarFiltros"
+                    prefWidth="125"/>
+
+            <Button fx:id="btnRecargar"
+                    text="Recargar"
+                    onAction="#recargarProductos"
+                    prefWidth="110"/>
+
+        </HBox>
+
+    </VBox>
+
+    <!-- Listado de productos -->
+
+    <VBox spacing="8" VBox.vgrow="ALWAYS">
+
+        <HBox alignment="CENTER_LEFT"
+              spacing="15">
+
+            <Label text="Listado de productos"
+                   style="-fx-font-size: 16px;
+                          -fx-font-weight: bold;"/>
+
+            <Label fx:id="lblContador"
+                   text="Productos visibles: 0"
+                   style="-fx-font-size: 13px;
+                          -fx-text-fill: #555555;"/>
+
+        </HBox>
+
+        <TableView fx:id="tblProductos"
+                   prefHeight="250"
+                   minHeight="160"
+                   VBox.vgrow="ALWAYS">
+
+            <columns>
+
+                <TableColumn fx:id="colIdProducto"
+                             text="ID"
+                             prefWidth="70"
+                             editable="false"/>
+
+                <TableColumn fx:id="colCodigo"
+                             text="Código"
+                             prefWidth="110"
+                             editable="false"/>
+
+                <TableColumn fx:id="colNombre"
+                             text="Nombre"
+                             prefWidth="310"
+                             editable="false"/>
+
+                <TableColumn fx:id="colCategoria"
+                             text="Categoría"
+                             prefWidth="170"
+                             editable="false"/>
+
+                <TableColumn fx:id="colPrecio"
+                             text="Precio C$"
+                             prefWidth="145"
+                             editable="false"/>
+
+                <TableColumn fx:id="colStock"
+                             text="Stock"
+                             prefWidth="110"
+                             editable="false"/>
+
+            </columns>
+
+        </TableView>
+
+    </VBox>
+
+    <!-- Formulario de productos -->
+
+    <VBox spacing="12"
+          style="-fx-background-color: white;
+                 -fx-background-radius: 8;
+                 -fx-padding: 14;">
+
+        <Label text="Datos del producto"
+               style="-fx-font-size: 16px;
+                      -fx-font-weight: bold;"/>
+
+        <GridPane hgap="12" vgap="8">
+
+            <!-- Etiquetas -->
+
+            <Label text="Código:"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="0"/>
+
+            <Label text="Nombre:"
+                   GridPane.columnIndex="1"
+                   GridPane.rowIndex="0"/>
+
+            <Label text="Categoría:"
+                   GridPane.columnIndex="2"
+                   GridPane.rowIndex="0"/>
+
+            <Label text="Precio C$:"
+                   GridPane.columnIndex="3"
+                   GridPane.rowIndex="0"/>
+
+            <Label text="Stock:"
+                   GridPane.columnIndex="4"
+                   GridPane.rowIndex="0"/>
+
+            <!-- Campos del formulario -->
+
+            <TextField fx:id="txtCodigo"
+                       promptText="P001"
+                       prefWidth="115"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"/>
+
+            <TextField fx:id="txtNombre"
+                       promptText="Nombre del producto"
+                       prefWidth="260"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="1"/>
+
+            <ComboBox fx:id="cmbCategoria"
+                      promptText="Seleccionar"
+                      prefWidth="165"
+                      GridPane.columnIndex="2"
+                      GridPane.rowIndex="1">
+
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Papelería"/>
+                        <String fx:value="Tecnología"/>
+                        <String fx:value="Accesorios"/>
+                    </FXCollections>
+                </items>
+
+            </ComboBox>
+
+            <TextField fx:id="txtPrecio"
+                       promptText="0.00"
+                       prefWidth="130"
+                       GridPane.columnIndex="3"
+                       GridPane.rowIndex="1"/>
+
+            <TextField fx:id="txtStock"
+                       promptText="0"
+                       prefWidth="100"
+                       GridPane.columnIndex="4"
+                       GridPane.rowIndex="1"/>
+
+        </GridPane>
+
+        <!-- Botones para gestionar productos -->
+
+        <HBox spacing="12" alignment="CENTER_LEFT">
+
+            <Button fx:id="btnNuevo"
+                    text="Nuevo"
+                    onAction="#nuevoProducto"
+                    prefWidth="115"/>
+
+            <Button fx:id="btnGuardar"
+                    text="Guardar"
+                    onAction="#guardarProducto"
+                    prefWidth="115"/>
+
+            <Button fx:id="btnActualizar"
+                    text="Actualizar"
+                    onAction="#actualizarProducto"
+                    prefWidth="115"/>
+
+            <Button fx:id="btnEliminar"
+                    text="Eliminar"
+                    onAction="#eliminarProducto"
+                    prefWidth="115"/>
+
+        </HBox>
+
+    </VBox>
+
+</VBox>
